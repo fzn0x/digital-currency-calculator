@@ -22,14 +22,18 @@ app.get("/api/:currency", async (req, res) => {
       const price = (Number(req.query.amount) || 0) / rate;
       return res.json({
         currency: json.data.currency,
-        rate: rate,
-        price: price,
-        amount: price * rate,
+        [req.query.to.toUpperCase()]: {
+          rate: rate,
+          price: price,
+          amount: price * rate,
+        },
       });
     } else {
       return res.json({
         currency: json.data.currency,
-        rate: json.data.rates[req.query.to.toUpperCase()],
+        [req.query.to.toUpperCase()]: {
+          rate: json.data.rates[req.query.to.toUpperCase()],
+        },
       });
     }
   } else {
