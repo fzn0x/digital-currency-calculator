@@ -1,0 +1,21 @@
+{
+  "name": "digital-currency-exchange",
+  "version": "1.0.0",
+  "description": "Digital Currency Exchange, Cryptocurrencies to USD, ETH to USD, and more. Powered by Coinbase.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "Digital Currency Exchange",
+    "ETH to USD",
+    "USD to ETH",
+    "Cryptocurrency Exchange"
+  ],
+  "author": "bl0cknumber <bl0cknumber@protonmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2",
+    "node-fetch": "^2.6.7"
+  }
+}
