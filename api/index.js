@@ -27,6 +27,9 @@ app.get("/api/:currency", async (req, res) => {
           price: price,
           amount: price * rate,
         },
+        explainMessage: `Get ${price} ${json.data.currency} from ${
+          price * rate
+        } ${req.query.to.toUpperCase()}`,
       });
     } else {
       return res.json({
