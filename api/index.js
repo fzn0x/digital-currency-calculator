@@ -16,9 +16,14 @@ app.get("/api/:currency", async (req, res) => {
   );
   let json = await response.json();
 
-  if (req.query.to) {
+  if (req.query.to && !Array.isArray(req.query.to)) {
     if (req.query.amount) {
       const rate = json.data.rates[req.query.to.toUpperCase()];
+      if (!rate) {
+        return res.json({
+          message: "invalid pair!",
+        });
+      }
       const price = (Number(req.query.amount) || 0) / rate;
       return res.json({
         currency: json.data.currency,
