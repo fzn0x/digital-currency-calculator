@@ -16,14 +16,16 @@ app.get("/api/:currency", async (req, res) => {
   );
   let json = await response.json();
 
-  if (req.query.to && !Array.isArray(req.query.to)) {
+  if (req.query.to && typeof req.query.to === "string") {
     if (req.query.amount) {
       const rate = json.data.rates[req.query.to.toUpperCase()];
+
       if (!rate) {
         return res.json({
           message: "invalid pair!",
         });
       }
+
       const price = (Number(req.query.amount) || 0) / rate;
       return res.json({
         currency: json.data.currency,
@@ -37,10 +39,18 @@ app.get("/api/:currency", async (req, res) => {
         } ${req.query.to.toUpperCase()}`,
       });
     } else {
+      const rate = json.data.rates[req.query.to.toUpperCase()];
+
+      if (!rate) {
+        return res.json({
+          message: "invalid pair!",
+        });
+      }
+
       return res.json({
         currency: json.data.currency,
         [req.query.to.toUpperCase()]: {
-          rate: json.data.rates[req.query.to.toUpperCase()],
+          rate: rate,
         },
       });
     }

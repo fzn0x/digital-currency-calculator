@@ -4,7 +4,7 @@
   "description": "Digital Currency Exchange, Cryptocurrencies to USD, ETH to USD, and more. Powered by Coinbase.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node app.js"
   },
   "keywords": [
     "Digital Currency Exchange",
